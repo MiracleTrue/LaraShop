@@ -1,58 +1,147 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+## 项目部署
+- `mv .env.example .env`
+- `php artisan key:generate`
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+##### 服务器后台运行的服务:
+- `npm run watch-poll &`
+- `php artisan horizon &`
 
-## About Laravel
+## .env文件详解:
+###### 基础
+- APP_NAME=`项目名称`
+- APP_ENV=`开发:local 测试:testing 预上线:staging 正式环境: production`
+- APP_KEY=`php artisan key:generate 生成`
+- APP_DEBUG=`开启Debug:true   关闭Debug:false 生产环境必须关闭`
+- APP_LOG_LEVEL=`日志记录的等级默认记录全部 debug 生成环境应该为:error`
+- APP_URL=`项目的Url地址  http://www.xxx.com`
+- DEBUGER_ENABLE=`是否开启 Debugbar`
+## Composer插件:
+```
+将所有配置文件 publish 出来
+php artisan vendor:publish
+```
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+###### 安装 Laravel-ide-helper
+```
+composer require barryvdh/laravel-ide-helper
+添加对应配置到 .gitignore 文件中：
+.idea
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+以下命令生成代码对应文档：
+php artisan ide-helper:generate
+```
+###### 安装 Debugbar
+```
+composer require "barryvdh/laravel-debugbar:~3.1" --dev
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+生成配置文件，存放位置 config/debugbar.php：
+php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 
-## Learning Laravel
+打开 config/debugbar.php，将 enabled 的值设置为：
+'enabled' => env('DEBUGER_ENABLE', false),
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
+-.安装 DingoAPI
+你必须在你的项目中修改 composer.json 文件并且运行 composer update 命令来加载这个包的最新版本。
+"require": {
+    "dingo/api": "2.0.0-alpha1"
+}
+php artisan vendor:publish --provider="Dingo\Api\Provider\LaravelServiceProvider"
+```
 
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
+###### 导航的 Active 状态
+```
+composer require "hieu-le/active:~3.5"
+函数:
+function active_class($condition, $activeClass = 'active', $inactiveClass = '')
+使用:
+{{ active_class((if_route('category.show') && if_route_param('category', 1))) }}
+```
 
-## Laravel Sponsors
+###### 安装 HTMLPurifier for Laravel 5 ( XSS攻击 用户提交数据过滤器)
+```
+使用 Composer 安装：
+composer require "mews/purifier:~2.0"
+命令行下运行
+php artisan vendor:publish --provider="Mews\Purifier\PurifierServiceProvider"
+```
 
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
+###### 图片验证码扩展包 mews/captcha
+```
+使用 Composer 安装：
+composer require "mews/captcha:~2.0"
+运行以下命令生成配置文件 config/captcha.php：
+php artisan vendor:publish --provider='Mews\Captcha\CaptchaServiceProvider'
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
+###### 安装 Guzzle HTTP 请求依赖包
+```
+composer require "guzzlehttp/guzzle:~6.3"
+```
 
-## Contributing
+###### 安装 PinYin 基于 CC-CEDICT 词典的中文转拼音工具，是一套优质的汉字转拼音解决方案。
+```
+composer require "overtrue/pinyin:~3.0"
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+###### Redis 队列驱动器依赖
+```
+composer require "predis/predis:~1.0"
+```
 
-## Security Vulnerabilities
+###### Horizon 是 Laravel 生态圈里的一员，为 Laravel Redis 队列提供了一个漂亮的仪表板，允许我们很方便地查看和管理 Redis 队列任务执行的情况。
+```
+使用 Composer 安装：
+composer require "laravel/horizon:~1.0"
+安装完成后，使用 vendor:publish Artisan 命令发布相关文件：
+php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
+分别是配置文件 config/horizon.php 和存放在 public/vendor/horizon 文件夹中的 CSS 、JS 等页面资源文件。
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Horizon 是一个监控程序，需要常驻运行，我们可以通过以下命令启动：
+php artisan horizon
+安装了 Horizon 以后，我们将使用 horizon 命令来启动队列系统和任务监控，无需使用 queue:listen。
+```
 
-## License
+###### 使用 Laravel-permission 扩展包,权限和角色控制
+```
+composer require "spatie/laravel-permission:~2.7"
+生成数据库迁移文件：
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="migrations"
+php artisan migrate
+生成配置信息：
+php artisan vendor:publish --provider="Spatie\Permission\PermissionServiceProvider" --tag="config"
+数据表：
+roles —— 角色的模型表；
+permissions —— 权限的模型表；
+model_has_roles —— 模型与角色的关联表，用户拥有什么角色在此表中定义，一个用户能拥有多个角色；
+role_has_permissions —— 角色拥有的权限关联表，如管理员拥有查看后台的权限都是在此表定义，一个角色能拥有多个权限；
+model_has_permissions —— 模型与权限关联表，一个模型能拥有多个权限。
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+###### 用户切换工具 sudo-su
+```
+composer require "viacreative/sudo-su:~1.1"
+添加 Provider :
+app/Providers/AppServiceProvider.php
+    public function register()
+    {
+        if (app()->isLocal()) {
+            $this->app->register(\VIACreative\SudoSu\ServiceProvider::class);
+        }
+    }
+发布资源文件:
+php artisan vendor:publish --provider="VIACreative\SudoSu\ServiceProvider"
+resources/views/layouts/app.blade.php
+    @if (app()->isLocal())
+        @include('sudosu::user-selector')
+    @endif
+```
+
+###### 安装 easy-sms
+```
+composer require "overtrue/easy-sms"
+php artisan make:provider EasySmsServiceProvider
+教程:https://laravel-china.org/courses/laravel-advance-training-5.5/791/sms-provider
+```
