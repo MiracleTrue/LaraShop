@@ -8,16 +8,16 @@ class CreateUsersTable extends Migration
 {
     /**
      * Run the migrations.
-     *
      * @return void
      */
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('password');
+            $table->string('name')->comment('用户名');
+            $table->string('email')->unique()->comment('邮箱');
+            $table->string('password')->comment('用户名');
+            $table->boolean('email_verified')->default(false)->comment('邮箱验证状态 1.已验证 0.未验证');
             $table->rememberToken();
             $table->timestamps();
         });
@@ -25,7 +25,6 @@ class CreateUsersTable extends Migration
 
     /**
      * Reverse the migrations.
-     *
      * @return void
      */
     public function down()
