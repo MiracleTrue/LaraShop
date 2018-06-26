@@ -1,7 +1,13 @@
 ## 项目部署
-- `mv .env.example .env`
-- `php artisan key:generate`
+```
+mv .env.example .env
+php artisan key:generate
 
+运行 Laravel Mix
+yarn config set registry https://registry.npm.taobao.org
+SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
+
+```
 ##### 服务器后台运行的服务:
 - `npm run watch-poll &`
 - `php artisan horizon &`
