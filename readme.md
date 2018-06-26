@@ -20,7 +20,7 @@ SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
 - APP_DEBUG=`开启Debug:true   关闭Debug:false 生产环境必须关闭`
 - APP_LOG_LEVEL=`日志记录的等级默认记录全部 debug 生成环境应该为:error`
 - APP_URL=`项目的Url地址  http://www.xxx.com`
-- DEBUGER_ENABLE=`是否开启 Debugbar`
+- DEBUGBAR_ENABLED=`是否开启 Debugbar`
 ## Composer插件:
 ```
 将所有配置文件 publish 出来
@@ -47,9 +47,10 @@ composer require "barryvdh/laravel-debugbar:~3.1" --dev
 php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 
 打开 config/debugbar.php，将 enabled 的值设置为：
-'enabled' => env('DEBUGER_ENABLE', false),
-
--.安装 DingoAPI
+'enabled' => env('DEBUGBAR_ENABLED', false),
+```
+###### 安装 DingoAPI
+```
 你必须在你的项目中修改 composer.json 文件并且运行 composer update 命令来加载这个包的最新版本。
 "require": {
     "dingo/api": "2.0.0-alpha1"
