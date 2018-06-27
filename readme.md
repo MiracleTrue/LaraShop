@@ -65,6 +65,13 @@ composer require encore/laravel-admin "1.5.*"
 
 php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
 php artisan admin:install
+
+1. 创建控制器
+Laravel-Admin 的控制器创建方式与普通的控制器创建方式不太一样，要用 admin:make 来创建：
+
+$ php artisan admin:make UsersController --model=App\\Models\\User
+
+其中 --model=App\\Models\\User 代表新创建的这个控制器是要对 App\Models\User 这个模型做增删改查。
 ```
 
 ###### 安装 DingoAPI
