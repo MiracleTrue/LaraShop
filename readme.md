@@ -59,6 +59,14 @@ config/app.php
 'locale' => 'zh-CN',
 ```
 
+###### encore/laravel-admin 扩展包
+```
+composer require encore/laravel-admin "1.5.*"
+
+php artisan vendor:publish --provider="Encore\Admin\AdminServiceProvider"
+php artisan admin:install
+```
+
 ###### 安装 DingoAPI
 ```
 你必须在你的项目中修改 composer.json 文件并且运行 composer update 命令来加载这个包的最新版本。
