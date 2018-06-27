@@ -65,7 +65,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'PRC',
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +78,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'zh_CN',
 
     /*
     |--------------------------------------------------------------------------
@@ -103,6 +103,8 @@ return [
     | will not be safe. Please do this before deploying an application!
     |
     */
+    'faker_locale' => 'zh_CN',
+
 
     'key' => env('APP_KEY'),
 
