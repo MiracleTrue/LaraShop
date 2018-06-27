@@ -49,6 +49,16 @@ php artisan vendor:publish --provider="Barryvdh\Debugbar\ServiceProvider"
 打开 config/debugbar.php，将 enabled 的值设置为：
 'enabled' => env('DEBUGBAR_ENABLED', false),
 ```
+
+###### 安装 中文语言包
+```
+composer require overtrue/laravel-lang
+
+然后修改系统语言，将原本的值 en 改成 zh-CN：
+config/app.php
+'locale' => 'zh-CN',
+```
+
 ###### 安装 DingoAPI
 ```
 你必须在你的项目中修改 composer.json 文件并且运行 composer update 命令来加载这个包的最新版本。
