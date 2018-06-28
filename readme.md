@@ -3,10 +3,14 @@
 mv .env.example .env
 php artisan key:generate
 
-运行 Laravel Mix
+//运行 Laravel Mix
 yarn config set registry https://registry.npm.taobao.org
 SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
 
+//后台菜单和权限修改
+database\seeds\AdminTablesSeeder.php 中修改后
+
+php artisan db:seed --class=AdminTablesSeeder
 ```
 ##### 服务器后台运行的服务:
 - `npm run watch-poll &`
@@ -21,10 +25,13 @@ SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
 - APP_LOG_LEVEL=`日志记录的等级默认记录全部 debug 生成环境应该为:error`
 - APP_URL=`项目的Url地址  http://www.xxx.com`
 - DEBUGBAR_ENABLED=`是否开启 Debugbar`
-## Composer插件:
+## Composer 已安装插件:
 ```
 将所有配置文件 publish 出来
 php artisan vendor:publish
+
+重命名工厂文件之后需要执行 ，否则会找不到对应的工厂文件。
+composer dumpautoload
 ```
 
 ###### 安装 Laravel-ide-helper
@@ -73,6 +80,9 @@ $ php artisan admin:make UsersController --model=App\\Models\\User
 
 其中 --model=App\\Models\\User 代表新创建的这个控制器是要对 App\Models\User 这个模型做增删改查。
 ```
+
+##
+## Composer 常用插件:
 
 ###### 安装 DingoAPI
 ```
