@@ -67,8 +67,8 @@ return [
      * Laravel-admin upload setting.
      */
     'upload' => [
-
-        'disk' => 'admin',
+        // 对应 filesystem.php 中的 disks
+        'disk' => 'public',
 
         'directory' => [
             'image' => 'images',
