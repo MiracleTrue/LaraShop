@@ -60,7 +60,7 @@ body {
   }
 }
 
-.products-index-page {
+.products-index-page, .products-favorites-page {
   .search-form {
     padding: 0 20px;
     margin-bottom: 10px;
@@ -165,8 +165,8 @@ body {
     display: flex;
     flex-drection: row;
     font-size: 12px;
-    &>div {
-      &.sold_count,&.review_count {
+    & > div {
+      &.sold_count, &.review_count {
         border-right: 1px dotted #c9c9c9;
       }
       width: 33%;
@@ -179,7 +179,7 @@ body {
     }
   }
   .skus {
-    &>label {
+    & > label {
       color: #999;
       font-size: 12px;
       padding: 0 10px 0 10px;
@@ -226,7 +226,7 @@ body {
     padding-left: 44px;
   }
 
-  .product-detail  {
+  .product-detail {
     .nav.nav-tabs > li > a {
       border-radius: 0 !important;
     }

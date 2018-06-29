@@ -34,11 +34,6 @@
                                             <input type="radio" name="skus" autocomplete="off" value="{{ $sku->id }}"> {{ $sku->title }}
                                         </label>
                                     @endforeach
-                                    {{--@foreach($product->skus as $sku)--}}
-                                    {{--<label class="btn btn-default sku-btn" title="{{ $sku->description }}" >--}}
-                                    {{--<input type="radio" name="skus" autocomplete="off" value="{{ $sku->id }}"> {{ $sku->title }}--}}
-                                    {{--</label>--}}
-                                    {{--@endforeach--}}
                                 </div>
                             </div>
                             <div class="cart_amount"><label>数量</label><input type="text" class="form-control input-sm" value="1"><span>件</span><span
