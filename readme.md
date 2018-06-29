@@ -22,9 +22,9 @@ php artisan db:seed --class=AdminTablesSeeder
 ## 常用 artisan 命令
 ```
 //创建模型 & 数据填充 & 控制器
-php artisan make:model Models/{模型名称} -mf  //模型 & 工厂
-php artisan make:seeder {模型名称}TableSeeder //关联表不需要seeder
-php artisan make:controller {控制器名称} -r   //控制器名称一般为模型复数名
+php artisan make:model Models/{模型名称} -mf         //模型 & 工厂
+php artisan make:seeder {模型名称}Seeder             //数据填充名称一般为模型复数名
+php artisan make:controller {控制器名称}Controller   //控制器名称一般为模型复数名
 
 //创建验证器
 php artisan make:request {验证器名称}Request
@@ -46,7 +46,7 @@ composer dumpautoload
 - APP_URL=`项目的Url地址  http://www.xxx.com`
 - DEBUGBAR_ENABLED=`是否开启 Debugbar`
 ## Composer 已安装插件:
-###### 安装 Laravel-ide-helper
+###### 安装 Laravel-ide-helper IDE & 模型注释助手
 ```
 composer require barryvdh/laravel-ide-helper
 添加对应配置到 .gitignore 文件中：
@@ -55,8 +55,15 @@ _ide_helper.php
 _ide_helper_models.php
 .phpstorm.meta.php
 
-以下命令生成代码对应文档：
+//模型注释助手:
 php artisan ide-helper:generate
+```
+###### 安装 laravel-test-factory-helper 数据工厂助手
+```
+composer require mpociot/laravel-test-factory-helper
+
+//数据工厂助手:
+php artisan test-factory-helper:generate
 ```
 ###### 安装 Debugbar
 ```
