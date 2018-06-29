@@ -19,6 +19,20 @@ php artisan db:seed --class=AdminTablesSeeder
 - `npm run watch-poll &`
 - `php artisan horizon &`
 
+## 常用 artisan 命令
+```
+创建模型 & 数据填充 & 控制器
+php artisan make:model Models/{模型名称} -mf  //模型 & 工厂
+php artisan make:seeder {模型名称}TableSeeder //关联表不需要seeder
+php artisan make:controller {控制器名称} -r   //控制器名称一般为模型复数名
+
+将所有配置文件 publish 出来
+php artisan vendor:publish
+
+重命名工厂文件之后需要执行 ，否则会找不到对应的工厂文件。
+composer dumpautoload
+```
+
 ## .env文件详解:
 ###### 基础
 - APP_NAME=`项目名称`
@@ -29,14 +43,6 @@ php artisan db:seed --class=AdminTablesSeeder
 - APP_URL=`项目的Url地址  http://www.xxx.com`
 - DEBUGBAR_ENABLED=`是否开启 Debugbar`
 ## Composer 已安装插件:
-```
-将所有配置文件 publish 出来
-php artisan vendor:publish
-
-重命名工厂文件之后需要执行 ，否则会找不到对应的工厂文件。
-composer dumpautoload
-```
-
 ###### 安装 Laravel-ide-helper
 ```
 composer require barryvdh/laravel-ide-helper
