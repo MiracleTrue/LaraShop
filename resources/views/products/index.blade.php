@@ -30,9 +30,13 @@
                             <div class="col-xs-3 product-item">
                                 <div class="product-content">
                                     <div class="top">
-                                        <div class="img"><img src="{{ $product->image_url }}" alt=""></div>
+                                        <div class="img">
+                                            <a href="{{ route('products.show', ['product' => $product->id]) }}">
+                                                <img src="{{ $product->image_url }}" alt="">
+                                            </a>
+                                        </div>
                                         <div class="price"><b>￥</b>{{ $product->price }}</div>
-                                        <div class="title">{{ $product->title }}</div>
+                                        <a href="{{ route('products.show', ['product' => $product->id]) }}">{{ $product->title }}</a>
                                     </div>
                                     <div class="bottom">
                                         <div class="sold_count">销量 <span>{{ $product->sold_count }}笔</span></div>
@@ -57,7 +61,7 @@
             $('.search-form select[name=order]').val(filters.order);
         });
 
-        $('.search-form select[name=order]').on('change', function() {
+        $('.search-form select[name=order]').on('change', function () {
             $('.search-form').submit();
         });
     </script>
