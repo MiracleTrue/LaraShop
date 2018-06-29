@@ -55,15 +55,12 @@ _ide_helper.php
 _ide_helper_models.php
 .phpstorm.meta.php
 
-//模型注释助手:
+//IDE助手:
 php artisan ide-helper:generate
-```
-###### 安装 laravel-test-factory-helper 数据工厂助手
-```
-composer require mpociot/laravel-test-factory-helper
 
-//数据工厂助手:
-php artisan test-factory-helper:generate
+//模型注释助手:
+composer require doctrine/dbal
+php artisan ide-helper:models
 ```
 ###### 安装 Debugbar
 ```
