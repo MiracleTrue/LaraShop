@@ -3,6 +3,9 @@
 mv .env.example .env
 php artisan key:generate
 
+//静态资源软链接
+php artisan storage:link
+
 //运行 Laravel Mix
 yarn config set registry https://registry.npm.taobao.org
 SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn

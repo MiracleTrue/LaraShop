@@ -12,7 +12,7 @@ $factory->define(App\Models\ProductSku::class, function (Faker $faker) {
     $created_at = $faker->dateTimeThisMonth($updated_at);
 
     return [
-        'title' => $faker->colorName,
+        'title' => $faker->colorName . '-' . $faker->randomNumber(1),
         'description' => 'SKU 描述',
         'price' => $faker->randomFloat(2, 10, 9000),
         'stock' => $faker->randomNumber(3),

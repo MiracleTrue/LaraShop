@@ -7,16 +7,13 @@
 //
 //// Bootstrap
 //@import "~bootstrap-sass/assets/stylesheets/bootstrap";
-
-
 @import "variables";
-
 // Bootstrap
 @import "~bootstrap-sass/assets/stylesheets/bootstrap";
 
 // 通用样式
 body {
-  font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial,sans-serif;
+  font-family: Hiragino Sans GB, "Hiragino Sans GB", Helvetica, "Microsoft YaHei", Arial, sans-serif;
 }
 
 /* 顶部导航 */
@@ -33,8 +30,9 @@ body {
 /* 底部样式 */
 html {
   position: relative;
-  min-height: 100% ;
+  min-height: 100%;
 }
+
 body {
   margin-bottom: 60px;
 }
@@ -42,7 +40,7 @@ body {
 .footer {
   position: absolute;
   bottom: 0;
-  width: 100% ;
+  width: 100%;
   /* Set the fixed height of the footer here */
   height: 60px;
   background-color: #000;
@@ -57,6 +55,67 @@ body {
 
       a {
         color: inherit;
+      }
+    }
+  }
+}
+
+.products-index-page {
+  .search-form {
+    padding: 0 20px;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+  }
+  .pagination {
+    margin-right: 5px;
+  }
+  .products-list {
+    padding: 0 15px;
+    .product-item {
+      padding: 0 5px;
+      margin-bottom: 10px;
+      .product-content {
+        border: 1px solid #eee;
+        .top {
+          padding: 5px;
+          img {
+            width: 100%;
+          }
+          .price {
+            margin-top: 5px;
+            font-size: 20px;
+            color: #ff0036;
+            b {
+              font-size: 14px;
+            }
+          }
+          .title {
+            margin-top: 10px;
+            font-size: 12px;
+          }
+        }
+        .bottom {
+          font-size: 12px;
+          display: flex;
+          .sold_count span {
+            color: #b57c5b;
+            font-weight: bold;
+          }
+          .review_count span {
+            color: #38b;
+            font-weight: bold;
+          }
+          & > div {
+            &:first-child {
+              border-right: 1px solid #eee;
+            }
+            padding: 10px 5px;
+            line-height: 12px;
+            flex-grow: 1;
+            border-top: 1px solid #eee;
+          }
+        }
       }
     }
   }
