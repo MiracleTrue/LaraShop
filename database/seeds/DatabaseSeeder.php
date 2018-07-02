@@ -23,5 +23,9 @@ class DatabaseSeeder extends Seeder
         //收藏
         $this->call(UserFavoriteProductsSeeder::class);
 
+        //购物车
+        $this->call(CartItemsSeeder::class);
+
+
     }
 }

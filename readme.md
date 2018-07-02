@@ -10,6 +10,13 @@ php artisan storage:link
 yarn config set registry https://registry.npm.taobao.org
 SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
 
+//生产环境数据数据迁移
+php artisan migrate
+php artisan db:seed --class=AdminTablesSeeder
+
+//测试环境数据数据迁移(含测试数据)
+php artisan migrate:refresh --seed
+
 //后台菜单和权限修改
 database\seeds\AdminTablesSeeder.php 中修改后
 
