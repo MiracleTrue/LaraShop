@@ -39,6 +39,9 @@ php artisan make:request {验证器名称}Request
 //创建任务
 php artisan make:job {任务名称}
 
+//创建授权策略类
+php artisan make:policy {模型名称}Policy   //OrderPolicy
+
 //将所有配置文件 publish 出来
 php artisan vendor:publish
 
