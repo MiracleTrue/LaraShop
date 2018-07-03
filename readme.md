@@ -36,6 +36,9 @@ php artisan make:controller {控制器名称}Controller   //控制器名称一�
 //创建验证器
 php artisan make:request {验证器名称}Request
 
+//创建任务
+php artisan make:job {任务名称}
+
 //将所有配置文件 publish 出来
 php artisan vendor:publish
 
