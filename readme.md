@@ -106,6 +106,23 @@ $ php artisan admin:make UsersController --model=App\\Models\\User
 
 其中 --model=App\\Models\\User 代表新创建的这个控制器是要对 App\Models\User 这个模型做增删改查。
 ```
+###### Redis 队列驱动器依赖
+```
+composer require "predis/predis:~1.0"
+```
+
+###### Horizon 是 Laravel 生态圈里的一员，为 Laravel Redis 队列提供了一个漂亮的仪表板，允许我们很方便地查看和管理 Redis 队列任务执行的情况。
+```
+使用 Composer 安装：
+composer require "laravel/horizon:~1.0"
+安装完成后，使用 vendor:publish Artisan 命令发布相关文件：
+php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
+分别是配置文件 config/horizon.php 和存放在 public/vendor/horizon 文件夹中的 CSS 、JS 等页面资源文件。
+
+Horizon 是一个监控程序，需要常驻运行，我们可以通过以下命令启动：
+php artisan horizon
+安装了 Horizon 以后，我们将使用 horizon 命令来启动队列系统和任务监控，无需使用 queue:listen。
+```
 
 ##
 ## Composer 常用插件:
@@ -152,24 +169,6 @@ composer require "guzzlehttp/guzzle:~6.3"
 ###### 安装 PinYin 基于 CC-CEDICT 词典的中文转拼音工具，是一套优质的汉字转拼音解决方案。
 ```
 composer require "overtrue/pinyin:~3.0"
-```
-
-###### Redis 队列驱动器依赖
-```
-composer require "predis/predis:~1.0"
-```
-
-###### Horizon 是 Laravel 生态圈里的一员，为 Laravel Redis 队列提供了一个漂亮的仪表板，允许我们很方便地查看和管理 Redis 队列任务执行的情况。
-```
-使用 Composer 安装：
-composer require "laravel/horizon:~1.0"
-安装完成后，使用 vendor:publish Artisan 命令发布相关文件：
-php artisan vendor:publish --provider="Laravel\Horizon\HorizonServiceProvider"
-分别是配置文件 config/horizon.php 和存放在 public/vendor/horizon 文件夹中的 CSS 、JS 等页面资源文件。
-
-Horizon 是一个监控程序，需要常驻运行，我们可以通过以下命令启动：
-php artisan horizon
-安装了 Horizon 以后，我们将使用 horizon 命令来启动队列系统和任务监控，无需使用 queue:listen。
 ```
 
 ###### 使用 Laravel-permission 扩展包,权限和角色控制
