@@ -127,6 +127,27 @@ php artisan horizon
 安装了 Horizon 以后，我们将使用 horizon 命令来启动队列系统和任务监控，无需使用 queue:listen。
 ```
 
+##### Alipay 和 WeChat 的 laravel 支付扩展包
+```
+composer require yansongda/laravel-pay
+
+php artisan vendor:publish --provider="Yansongda\\LaravelPay\\PayServiceProvider" --tag=laravel-pay
+
+.env 文件里面配置
+
+// alipay 配置
+ALI_APP_ID=
+ALI_PUBLIC_KEY=
+ALI_PRIVATE_KEY=
+
+// wechat 配置
+WECHAT_APP_ID=
+WECHAT_MINIAPP_ID=
+WECHAT_APPID=
+WECHAT_MCH_ID=
+WECHAT_KEY=
+```
+
 ##
 ## Composer 常用插件:
 
