@@ -6,10 +6,10 @@ return [
         'app_id' => env('ALI_APP_ID', ''),
 
         // 支付宝异步通知地址
-        'notify_url' => '',
+        'notify_url' => 'http://requestbin.fullcontact.com/tu3y7ktu',
 
         // 支付成功后同步通知地址
-        'return_url' => '',
+        'return_url' => 'http://larashop.test/payment/alipay/return',
 
         // 阿里公共密钥，验证签名时使用
         'ali_public_key' => env('ALI_PUBLIC_KEY', ''),
@@ -20,11 +20,11 @@ return [
         // optional，默认 warning；日志路径为：sys_get_temp_dir().'/logs/yansongda.pay.log'
         'log' => [
             'file' => storage_path('logs/alipay.log'),
-        //     'level' => 'debug'
+//             'level' => 'debug'
         ],
 
         // optional，设置此参数，将进入沙箱模式
-        // 'mode' => 'dev',
+        'mode' => 'dev',
     ],
 
     'wechat' => [
@@ -55,7 +55,7 @@ return [
         // optional，默认 warning；日志路径为：sys_get_temp_dir().'/logs/yansongda.pay.log'
         'log' => [
             'file' => storage_path('logs/wechat.log'),
-        //     'level' => 'debug'
+            //     'level' => 'debug'
         ],
 
         // optional

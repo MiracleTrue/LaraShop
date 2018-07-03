@@ -10,6 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Route::get('alipay', function() {
+//
+//    return \Yansongda\LaravelPay\Facades\Pay::alipay()->web([
+//        'out_trade_no' => time(),
+//        'total_amount' => '100',
+//        'subject' => 'test subject - 测试',
+//    ]);
+//});
+
 
 Route::redirect('/', '/products')->name('root');
 Auth::routes();
@@ -20,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('email_verification/verify', 'EmailVerificationController@verify')->name('email_verification.verify');
 
     Route::group(['middleware' => 'email_verified'], function () {
+
         //收货地址
         Route::get('user_addresses', 'UserAddressesController@index')->name('user_addresses.index');
         Route::get('user_addresses/create', 'UserAddressesController@create')->name('user_addresses.create');
@@ -42,9 +52,16 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('orders', 'OrdersController@index')->name('orders.index');
         Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
         Route::post('orders', 'OrdersController@store')->name('orders.store');
+
+        //支付
+        Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');
+        Route::get('payment/alipay/return', 'PaymentController@alipayReturn')->name('payment.alipay.return');
     });
 });
 
 //商品列表
 Route::get('products', 'ProductsController@index')->name('products.index');
 Route::get('products/{product}', 'ProductsController@show')->name('products.show');
+
+//支付回调
+Route::post('payment/alipay/notify', 'PaymentController@alipayNotify')->name('payment.alipay.notify');

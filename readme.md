@@ -47,6 +47,9 @@ php artisan vendor:publish
 
 //重命名工厂文件之后需要执行 ，否则会找不到对应的工厂文件。
 composer dumpautoload
+
+//清除配置文件缓存
+php artisan config:cache
 ```
 
 ## .env文件详解:
@@ -129,9 +132,9 @@ php artisan horizon
 
 ##### Alipay 和 WeChat 的 laravel 支付扩展包
 ```
-composer require yansongda/laravel-pay
+composer require yansongda/pay
 
-php artisan vendor:publish --provider="Yansongda\\LaravelPay\\PayServiceProvider" --tag=laravel-pay
+wget -O config/pay.php https://github.com/yansongda/laravel-pay/raw/master/config/pay.php
 
 .env 文件里面配置
 
@@ -146,6 +149,13 @@ WECHAT_MINIAPP_ID=
 WECHAT_APPID=
 WECHAT_MCH_ID=
 WECHAT_KEY=
+
+//实例化
+        Pay::alipay(config('pay.alipay'))->web([
+            'out_trade_no' => $order->no, // 订单编号，需保证在商户端不重复
+            'total_amount' => $order->total_amount, // 订单金额，单位元，支持小数点后两位
+            'subject' => '支付 Laravel Shop 的订单：' . $order->no, // 订单标题
+        ]);
 ```
 
 ##
