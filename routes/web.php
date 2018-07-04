@@ -53,6 +53,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('orders/{order}', 'OrdersController@show')->name('orders.show');
         Route::post('orders', 'OrdersController@store')->name('orders.store');
         Route::post('orders/{order}/received', 'OrdersController@received')->name('orders.received');
+        Route::get('orders/{order}/review', 'OrdersController@review')->name('orders.review.show');
+        Route::post('orders/{order}/review', 'OrdersController@sendReview')->name('orders.review.store');
 
         //支付
         Route::get('payment/{order}/alipay', 'PaymentController@payByAlipay')->name('payment.alipay');

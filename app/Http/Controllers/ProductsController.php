@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exceptions\InvalidRequestException;
+use App\Models\OrderItem;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -68,25 +69,42 @@ class ProductsController extends Controller
      */
     public function show(Product $product, Request $request)
     {
-        if (!$product->on_sale) {
+        if (!$product->on_sale)
+        {
             throw new InvalidRequestException('商品未上架');
         }
 
+
         $favored = false;
         // 用户未登录时返回的是 null，已登录时返回的是对应的用户对象
-        if($user = $request->user()) {
+        if ($user = $request->user())
+        {
             // 从当前用户已收藏的商品中搜索 id 为当前商品 id 的商品
             // boolval() 函数用于把值转为布尔值
             $favored = boolval($user->favoriteProducts()->find($product->id));
         }
 
-        return view('products.show', ['product' => $product, 'favored' => $favored]);
+        $reviews = OrderItem::query()
+            ->with(['order.user', 'productSku'])// 预先加载关联关系
+            ->where('product_id', $product->id)
+            ->whereNotNull('reviewed_at')// 筛选出已评价的
+            ->orderBy('reviewed_at', 'desc')// 按评价时间倒序
+            ->limit(10)// 取出 10 条
+            ->get();
+
+        // 最后别忘了注入到模板中
+        return view('products.show', [
+            'product' => $product,
+            'favored' => $favored,
+            'reviews' => $reviews
+        ]);
     }
 
     public function favor(Product $product, Request $request)
     {
         $user = $request->user();
-        if ($user->favoriteProducts()->find($product->id)) {
+        if ($user->favoriteProducts()->find($product->id))
+        {
             return [];
         }
 
