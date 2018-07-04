@@ -27,6 +27,15 @@ class OrdersController extends Controller
         });
     }
 
+    public function show(Order $order)
+    {
+        return Admin::content(function (Content $content) use ($order) {
+            $content->header('查看订单');
+            // body 方法可以接受 Laravel 的视图作为参数
+            $content->body(view('admin.orders.show', ['order' => $order]));
+        });
+    }
+
 
     /**
      * Edit interface.
@@ -69,6 +78,7 @@ class OrdersController extends Controller
             // 只展示已支付的订单，并且默认按支付时间倒序排序
             $grid->model()->whereNotNull('paid_at')->orderBy('paid_at', 'desc');
 
+            $grid->id('ID');
             $grid->no('订单流水号');
             // 展示关联关系的字段时，使用 column 方法
             $grid->column('user.name', '买家');
@@ -86,6 +96,8 @@ class OrdersController extends Controller
                 // 禁用删除和编辑按钮
                 $actions->disableDelete();
                 $actions->disableEdit();
+
+                $actions->append('<a class="btn btn-xs btn-primary" href="'.route('admin.orders.show', [$actions->getKey()]).'">查看</a>');
             });
             $grid->tools(function ($tools) {
                 // 禁用批量删除按钮
