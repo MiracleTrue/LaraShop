@@ -39,6 +39,15 @@ php artisan make:request {验证器名称}Request
 //创建任务
 php artisan make:job {任务名称}
 
+//创建事件
+php artisan make:event {事件名称}
+
+//创建监听器
+php artisan make:listener UpdateProductSoldCount --event=OrderPaid
+
+//创建通知类
+php artisan make:notification OrderPaidNotification
+
 //创建授权策略类
 php artisan make:policy {模型名称}Policy   //OrderPolicy
 
