@@ -124,6 +124,9 @@ $ php artisan admin:make UsersController --model=App\\Models\\User
 ###### Redis 队列驱动器依赖
 ```
 composer require "predis/predis:~1.0"
+
+//创建队列失败表
+php artisan queue:failed-table
 ```
 
 ###### Horizon 是 Laravel 生态圈里的一员，为 Laravel Redis 队列提供了一个漂亮的仪表板，允许我们很方便地查看和管理 Redis 队列任务执行的情况。

@@ -13,7 +13,7 @@ class PaymentController extends Controller
     protected function alipayConfig()
     {
         return array_merge(config('pay.alipay'), [
-            'notify_url' => 'http://requestbin.fullcontact.com/tu3y7ktu',
+            'notify_url' => 'http://requestbin.fullcontact.com/10sfzvg1',
             'return_url' => route('payment.alipay.return'),
         ]);
     }
@@ -26,13 +26,14 @@ class PaymentController extends Controller
     public function payByAlipay(Order $order, Request $request)
     {
         // 判断订单是否属于当前用户
-//        $this->authorize('own', $order);
+        $this->authorize('own', $order);
         // 订单已支付或者已关闭
         if ($order->paid_at || $order->closed)
         {
             throw new InvalidRequestException('订单状态不正确');
         }
 
+        info($this->alipayConfig());
         // 调用支付宝的网页支付
         return Pay::alipay($this->alipayConfig())->web([
             'out_trade_no' => $order->no, // 订单编号，需保证在商户端不重复
