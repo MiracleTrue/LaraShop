@@ -56,7 +56,7 @@
                             </li>
                         </ul>
                         <div class="tab-content">
-                            
+
                             <div role="tabpanel" class="tab-pane active" id="product-detail-tab">
                                 {!! $product->description !!}
                             </div>
