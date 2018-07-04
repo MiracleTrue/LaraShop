@@ -10,7 +10,7 @@ use Yansongda\Pay\Pay;
 
 class PaymentController extends Controller
 {
-    protected function alipayConfig()
+    public static function alipayConfig()
     {
         return array_merge(config('pay.alipay'), [
             'notify_url' => 'http://requestbin.fullcontact.com/10sfzvg1',
