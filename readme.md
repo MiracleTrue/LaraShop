@@ -19,7 +19,7 @@ php artisan migrate:refresh --seed
 
 //后台菜单和权限修改
 database\seeds\AdminTablesSeeder.php 中修改后
-
+php artisan admin:make UsersController --model=App\\Models\\User
 php artisan db:seed --class=AdminTablesSeeder
 ```
 ##### 服务器后台运行的服务:

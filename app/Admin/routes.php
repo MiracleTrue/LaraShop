@@ -21,4 +21,6 @@ Route::group([
     $router->post('products', 'ProductsController@store');
     $router->get('products/{id}/edit', 'ProductsController@edit');
     $router->put('products/{id}', 'ProductsController@update');
+
+    $router->get('orders', 'OrdersController@index');
 });
