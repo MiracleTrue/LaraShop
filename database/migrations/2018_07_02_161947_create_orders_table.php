@@ -20,6 +20,9 @@ class CreateOrdersTable extends Migration
             $table->unsignedInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
+            $table->unsignedInteger('coupon_code_id')->nullable();
+            $table->foreign('coupon_code_id')->references('id')->on('coupon_codes')->onDelete('set null');
+
             $table->text('address')->comment('JSON格式收货地址 地址快照');
             $table->decimal('total_amount')->comment('订单总金额');
             $table->text('remark')->nullable()->comment('订单备注');

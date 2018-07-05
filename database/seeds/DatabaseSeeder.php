@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
         //购物车
         $this->call(CartItemsSeeder::class);
 
+        //优惠券
+        $this->call(CouponCodesSeeder::class);
 
     }
 }

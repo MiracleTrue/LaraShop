@@ -33,6 +33,12 @@ class AdminTablesSeeder extends Seeder
                 'http_method' => '',
                 'http_path' => "/orders",
             ],
+            [
+                'name' => '优惠券管理',
+                'slug' => 'coupon_codes',
+                'http_method' => '',
+                'http_path' => "/coupon_codes",
+            ],
         ];
 
     /*自定义添加的菜单*/
@@ -59,6 +65,14 @@ class AdminTablesSeeder extends Seeder
                 'icon' => 'fa-list',
                 'uri' => '/orders',
             ],
+            [
+                'parent_id' => 0,
+                'order' => 1,
+                'title' => '优惠券管理',
+                'icon' => 'fa-list',
+                'uri' => '/coupon_codes',
+            ],
+
         ];
 
     /**
