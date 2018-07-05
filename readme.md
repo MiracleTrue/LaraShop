@@ -1,5 +1,18 @@
 ## 项目部署
 ```
+//Linux服务器环境要求
+支持Laravel 5.5 | PHP7.1 | MySql5.7 | Redis3.2
+Composer | Git客户端 | crond服务
+
+//安装
+composer install
+
+//crond服务
+crontab -e 添加
+* * * * * php /{项目绝对路径根目录}/artisan schedule:run >> /dev/null 2>&1    保存
+crontab -u root -l   查看
+
+//配置 env
 mv .env.example .env
 php artisan key:generate
 
@@ -11,7 +24,7 @@ yarn config set registry https://registry.npm.taobao.org
 SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
 
 //生产环境数据数据迁移
-php artisan migrate
+php artisan migrate:refresh
 php artisan db:seed --class=AdminTablesSeeder
 
 //测试环境数据数据迁移(含测试数据)

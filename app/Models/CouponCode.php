@@ -68,6 +68,7 @@ class CouponCode extends Model
     }
 
     /**
+     * 检验有效性
      * @param User $user
      * @param null $orderAmount
      * @throws CouponCodeUnavailableException
@@ -116,6 +117,11 @@ class CouponCode extends Model
         }
     }
 
+    /**
+     * 获得优惠后的价格
+     * @param $orderAmount
+     * @return mixed|string
+     */
     public function getAdjustedPrice($orderAmount)
     {
         // 固定金额
@@ -128,6 +134,11 @@ class CouponCode extends Model
         return number_format($orderAmount * (100 - $this->value) / 100, 2, '.', '');
     }
 
+    /**
+     * 改变使用量
+     * @param bool $increase
+     * @return int
+     */
     public function changeUsed($increase = true)
     {
         // 传入 true 代表新增用量，否则是减少用量
