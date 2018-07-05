@@ -2,34 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\CouponCodeUnavailableException;
 use App\Models\CouponCode;
 use Illuminate\Http\Request;
 
 class CouponCodesController extends Controller
 {
-    //
-    public function show($code)
+
+    /**
+     * @param $code
+     * @param Request $request
+     * @return CouponCode|\Illuminate\Database\Eloquent\Model|null|object
+     * @throws CouponCodeUnavailableException
+     */
+    public function show($code, Request $request)
     {
-        // 判断优惠券是否存在
-        if (!$record = CouponCode::where('code', $code)->where('enabled', true)->first())
+        if (!$record = CouponCode::where('code', $code)->first())
         {
-            abort(404);
+            throw new CouponCodeUnavailableException('优惠券不存在');
         }
 
-        if ($record->total - $record->used <= 0)
-        {
-            return response()->json(['msg' => '该优惠券已被兑完'], 403);
-        }
-
-        if ($record->not_before && $record->not_before->gt(now()))
-        {
-            return response()->json(['msg' => '该优惠券现在还不能使用'], 403);
-        }
-
-        if ($record->not_after && $record->not_after->lt(now()))
-        {
-            return response()->json(['msg' => '该优惠券已过期'], 403);
-        }
+        $record->checkAvailable($request->user());
 
         return $record;
     }
