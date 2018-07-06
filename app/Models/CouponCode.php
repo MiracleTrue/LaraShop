@@ -6,6 +6,38 @@ use App\Exceptions\CouponCodeUnavailableException;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
+/**
+ * App\Models\CouponCode
+ *
+ * @property int $id
+ * @property string $name 优惠券的标题
+ * @property string $code 优惠码，用户下单时输入
+ * @property string $type 优惠券类型，支持固定金额和百分比折扣
+ * @property float $value 折扣值，根据不同类型含义不同
+ * @property int $total 全站可兑换的数量
+ * @property int $used 当前已兑换的数量
+ * @property float $min_amount 使用该优惠券的最低订单金额
+ * @property \Carbon\Carbon|null $not_before 在这个时间之前不可用
+ * @property \Carbon\Carbon|null $not_after 在这个时间之后不可用
+ * @property bool $enabled 优惠券是否生效
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read mixed $description
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereEnabled($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereMinAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereNotAfter($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereNotBefore($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereTotal($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereUsed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\CouponCode whereValue($value)
+ * @mixin \Eloquent
+ */
 class CouponCode extends Model
 {
     //

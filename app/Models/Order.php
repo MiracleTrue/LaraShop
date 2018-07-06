@@ -5,6 +5,52 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Ramsey\Uuid\Uuid;
 
+/**
+ * App\Models\Order
+ *
+ * @property int $id
+ * @property string $no 订单号
+ * @property int $user_id
+ * @property int|null $coupon_code_id
+ * @property array $address JSON格式收货地址 地址快照
+ * @property float $total_amount 订单总金额
+ * @property string|null $remark 订单备注
+ * @property \Carbon\Carbon|null $paid_at 支付时间
+ * @property string|null $payment_method 支付方式
+ * @property string|null $payment_no 支付平台订单号
+ * @property string $refund_status 退款状态
+ * @property string|null $refund_no 退款单号
+ * @property bool $closed 订单是否已关闭
+ * @property bool $reviewed 订单是否已评价
+ * @property string $ship_status 物流状态
+ * @property array $ship_data JSON格式物流数据
+ * @property array $extra JSON格式其他额外数据
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \App\Models\CouponCode|null $couponCode
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\OrderItem[] $items
+ * @property-read \App\Models\User $user
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereAddress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereClosed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCouponCodeId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereExtra($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order wherePaidAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order wherePaymentMethod($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order wherePaymentNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereRefundNo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereRefundStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereRemark($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereReviewed($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereShipData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereShipStatus($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereTotalAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\Order whereUserId($value)
+ * @mixin \Eloquent
+ */
 class Order extends Model
 {
     const REFUND_STATUS_PENDING = 'pending';

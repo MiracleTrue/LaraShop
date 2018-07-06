@@ -27,6 +27,8 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ProductSku whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ProductSku whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property string $sku_description SKU 描述
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Models\ProductSku whereSkuDescription($value)
  */
 class ProductSku extends Model
 {
