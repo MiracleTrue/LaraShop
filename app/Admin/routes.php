@@ -4,14 +4,14 @@ use Illuminate\Routing\Router;
 
 Admin::registerAuthRoutes();
 
-/*无需登录*/
-Route::group([
-    'prefix' => config('admin.route.prefix'),
-    'namespace' => config('admin.route.namespace'),
-], function (Router $router)
-{
-    $router->post('wang_editor/images', 'WangEditorController@images');/*WangEditor上传图片*/
-});
+///*无需登录*/
+//Route::group([
+//    'prefix' => config('admin.route.prefix'),
+//    'namespace' => config('admin.route.namespace'),
+//], function (Router $router)
+//{
+//
+//});
 
 
 Route::group([
@@ -19,6 +19,7 @@ Route::group([
     'namespace'     => config('admin.route.namespace'),
     'middleware'    => config('admin.route.middleware'),
 ], function (Router $router) {
+    $router->post('wang_editor/images', 'WangEditorController@images');/*WangEditor上传图片*/
 
     $router->get('/', 'HomeController@index');
 

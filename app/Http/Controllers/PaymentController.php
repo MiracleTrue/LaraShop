@@ -13,7 +13,7 @@ class PaymentController extends Controller
     public static function alipayConfig()
     {
         return array_merge(config('pay.alipay'), [
-            'notify_url' => 'http://requestbin.fullcontact.com/10sfzvg1',
+            'notify_url' => route('payment.alipay.notify'),
             'return_url' => route('payment.alipay.return'),
         ]);
     }
