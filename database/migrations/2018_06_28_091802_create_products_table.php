@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title')->comment('商品名称');
-            $table->text('description')->comment('商品详情');
+            $table->text('description')->nullable()->comment('商品详情');
             $table->string('image')->comment('商品封面图片');
             $table->boolean('on_sale')->default(true)->comment('是否正在售卖');
             $table->float('rating')->default(5)->comment('商品评分');

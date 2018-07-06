@@ -29,7 +29,7 @@
                                                 data-price="{{ $sku->price }}"
                                                 data-stock="{{ $sku->stock }}"
                                                 data-toggle="tooltip"
-                                                title="{{ $sku->description }}"
+                                                title="{{ $sku->sku_description }}"
                                                 data-placement="bottom">
                                             <input type="radio" name="skus" autocomplete="off" value="{{ $sku->id }}"> {{ $sku->title }}
                                         </label>

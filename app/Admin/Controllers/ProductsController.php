@@ -113,7 +113,7 @@ class ProductsController extends Controller
             $form->image('image', '封面图片')->rules('required|image');
 
             // 创建一个富文本编辑器
-            $form->editor('description', '商品描述')->rules('required');
+            $form->editor('description', '商品描述');
 
             // 创建一组单选框
             $form->radio('on_sale', '上架')->options(['1' => '是', '0' => '否'])->default('0');
@@ -121,7 +121,7 @@ class ProductsController extends Controller
             // 直接添加一对多的关联模型
             $form->hasMany('skus', 'SKU 列表', function (Form\NestedForm $form) {
                 $form->text('title', 'SKU 名称')->rules('required');
-                $form->text('description', 'SKU 描述')->rules('required');
+                $form->text('sku_description', 'SKU 描述')->rules('required');
                 $form->text('price', '单价')->rules('required|numeric|min:0.01');
                 $form->text('stock', '剩余库存')->rules('required|integer|min:0');
             });
@@ -130,6 +130,8 @@ class ProductsController extends Controller
             $form->saving(function (Form $form) {
                 $form->model()->price = collect($form->input('skus'))->where(Form::REMOVE_FLAG_NAME, 0)->min('price');
             });
+
+
         });
     }
 }

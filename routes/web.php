@@ -10,14 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-//Route::get('alipay', function() {
-//
-//    return \Yansongda\LaravelPay\Facades\Pay::alipay()->web([
-//        'out_trade_no' => time(),
-//        'total_amount' => '100',
-//        'subject' => 'test subject - 测试',
-//    ]);
-//});
+Route::get('test', function() {
+
+
+});
 
 
 Route::redirect('/', '/products')->name('root');

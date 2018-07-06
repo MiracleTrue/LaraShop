@@ -4,6 +4,16 @@ use Illuminate\Routing\Router;
 
 Admin::registerAuthRoutes();
 
+/*无需登录*/
+Route::group([
+    'prefix' => config('admin.route.prefix'),
+    'namespace' => config('admin.route.namespace'),
+], function (Router $router)
+{
+    $router->post('wang_editor/images', 'WangEditorController@images');/*WangEditor上传图片*/
+});
+
+
 Route::group([
     'prefix'        => config('admin.route.prefix'),
     'namespace'     => config('admin.route.namespace'),

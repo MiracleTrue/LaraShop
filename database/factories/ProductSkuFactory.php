@@ -13,7 +13,7 @@ $factory->define(App\Models\ProductSku::class, function (Faker $faker) {
 
     return [
         'title' => $faker->colorName . '-' . $faker->randomNumber(1),
-        'description' => 'SKU 描述',
+        'sku_description' => 'SKU 描述',
         'price' => $faker->randomFloat(2, 10, 9000),
         'stock' => $faker->randomNumber(3),
         'created_at' => $created_at,

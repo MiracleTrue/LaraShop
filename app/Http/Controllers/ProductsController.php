@@ -28,7 +28,7 @@ class ProductsController extends Controller
                     ->orWhere('description', 'like', $like)
                     ->orWhereHas('skus', function ($query) use ($like) {
                         $query->where('title', 'like', $like)
-                            ->orWhere('description', 'like', $like);
+                            ->orWhere('sku_description', 'like', $like);
                     });
             });
         }

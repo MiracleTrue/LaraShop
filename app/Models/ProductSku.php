@@ -30,7 +30,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class ProductSku extends Model
 {
-    protected $fillable = ['title', 'description', 'price', 'stock'];
+    protected $fillable = ['title', 'sku_description', 'price', 'stock'];
 
     public function product()
     {
