@@ -13,7 +13,7 @@ crontab -e 添加
 crontab -u root -l   查看
 
 //配置 env
-mv .env.example .env
+cp .env.example .env
 php artisan key:generate
 
 //静态资源软链接
@@ -21,6 +21,7 @@ sudo php  artisan storage:link
 
 //运行 Laravel Mix
 yarn config set registry https://registry.npm.taobao.org
+
 SASS_BINARY_SITE=http://npm.taobao.org/mirrors/node-sass yarn
 
 //生产环境数据数据迁移
